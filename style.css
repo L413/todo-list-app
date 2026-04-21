@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #1a1a1a;
+    --secondary: #2d2d2d;
+    --tertiary: #3d3d3d;
+    --text: #ffffff;
+    --border: #4a4a4a;
+    --accent: #e0e0e0;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: slideDown 0.6s var(--transition);
+}
+
+#taskInput {
+    padding: 12px 16px;
+    background: var(--secondary);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+#taskInput:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--tertiary);
+    box-shadow: 0 0 0 3px rgba(224, 224, 224, 0.1);
+}
+
+#taskInput::placeholder {
+    color: #888;
+}
+
+#addTaskButton {
+    padding: 12px 16px;
+    background: var(--tertiary);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+#addTaskButton:hover {
+    background: var(--accent);
+    color: var(--primary);
+    transform: scale(1.02);
+}
+
+#addTaskButton:active {
+    transform: scale(0.95);
+}
+
+#taskList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    animation: fadeIn 0.6s var(--transition) 0.3s backwards;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: var(--transition);
+    animation: slideInLeft 0.4s var(--transition);
+}
+
+.task-item:hover {
+    border-color: var(--accent);
+    background: var(--tertiary);
+    transform: translateX(4px);
+}
+
+.task-item.completed {
+    opacity: 0.6;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+}
+
+.task-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.task-text {
+    font-size: 0.95rem;
+    word-break: break-word;
+    transition: var(--transition);
+}
+
+.task-date {
+    font-size: 0.75rem;
+    color: #888;
+    transition: var(--transition);
+}
+
+.task-item.completed .task-date {
+    color: #666;
+}
+
+.task-delete {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    transition: var(--transition);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-delete:hover {
+    background: rgba(224, 224, 224, 0.1);
+    color: #ff6b6b;
+    transform: scale(1.1);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #888;
+    animation: fadeIn 0.6s var(--transition);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+}
